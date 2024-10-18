@@ -2,10 +2,10 @@
 
 a very basic explanation from a novice making a machine learning model
 
----
-
 - Features to add
   - [ ] Add granules price as a feature
+
+---
 
 ### Introduction
 
@@ -25,7 +25,7 @@ This process could also be done using python, but since the data was very unorga
 
 ### Exploratory Data Analysis and its conclusion
 
-![montlysales vs quantity.png](montlysales vs quantity.png)
+![montlysales vs quantity.png](Images/montlysales%20vs%20quantity.png)
 
 Bar Plot of the monthly sales
 
@@ -38,8 +38,6 @@ From the bar plot labeled **“Monthly Sales vs Quantity”**, we can infer seve
    Despite fluctuations, there’s a relatively consistent range in the majority of sales quantities. It suggests that even though there are spikes and dips, the overall quantity stabilizes after recovery periods, indicating a somewhat resilient business model.
 3. **Long-Term Growth and Declines:**
    Long-term, the data suggests periodic growth in sales quantity followed by subsequent dips. The cause of these dips is the market off-season, which is generally the monsoons (July-October)
-
----
 
 ---
 
