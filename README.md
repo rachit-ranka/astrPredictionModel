@@ -2,16 +2,17 @@
 
 a very basic explanation from a novice making a machine learning model
 
-- Features to add
-  - [ ] Add granules price as a feature
-
 ---
 
-### Introduction
+- Future Improvements Suggested
+  - [ ] Add granules price as a feature
+  - [ ] extracting year, month, quarter, season, and day of the week from date⁠
+
+## Introduction
 
 ASTR Pet Industries is one of the leading PET preform manufacturer of central India I create this project with the aim to determine/predict the demand of preforms for the company to maintain enough quantity to crater the demand.
 
-### Data Acquiring and Data Cleaning
+## Data Acquiring and Data Cleaning
 
 First step was to gather the sales data from the erp software. So the company was setup in 2018 and was in production since 2019. So we currently have the data of about 6 years from 2019 to 2024. Now we have the year wise sales data in the excel format.
 
@@ -23,9 +24,9 @@ This process could also be done using python, but since the data was very unorga
 
 ---
 
-### Exploratory Data Analysis and its conclusion
+## Exploratory Data Analysis and its conclusion
 
-![montlysales vs quantity.png](Images/montlysales%20vs%20quantity.png)
+![montlysales vs quantity.png](Images/montlysales_vs_quantity.png)
 
 Bar Plot of the monthly sales
 
@@ -41,7 +42,9 @@ From the bar plot labeled **“Monthly Sales vs Quantity”**, we can infer seve
 
 ---
 
-### Trying Different Models and their inference
+---
+
+## Trying Different Models and their inference
 
 ### Linear Regression:
 
@@ -65,6 +68,50 @@ MAE = ~ 9829.74
 3. **Possible Non-Linear Relationship Between Time and Quantity: T**he relationship between DATE and Quantity is **non-linear**, but polynomial regression might not be flexible enough to model it. For instance, polynomial models assume that the underlying relationship is smooth, which might not be true for your data.
 4. **Potential Data Anomalies or Trends: H**igh MAE suggests that there might be **outliers**, **sudden jumps** in Quantity, or a significant **underlying trend** that is not being captured by these models.
 
-### Random Forest Regressor
+### Random Forest Regressor:
 
----
+1. **Mean Absolute Error (MAE): 5136.29**
+   Interpretation: The MAE is the average absolute difference between the actual and predicted values. In this case, the MAE is **5136.29**, which means that on average, the model’s predictions are off by around **5136 units** of the target variable (in this case, quantity).
+   Improvement: Compared to the previous models (linear and polynomial), the MAE has decreased significantly (from around 9500+), which indicates that the **RandomForestRegressor** has captured more complex relationships in the data and is providing better predictions.
+2. **OOB Score: 0.44**
+   Interpretation: The Out-of-Bag (OOB) score is similar to the R² score, which measures the proportion of variance in the target variable that is explained by the model. In this case, the OOB score is 0.44, which **means the model is able to explain 44% of the variance in the data using the features provided**.
+   Moderate Performance: While 44% suggests the model is capturing some patterns, there is still room for improvement. A higher OOB score would indicate better generalization to unseen data.
+
+<aside>
+📌
+
+### Feature Engineering
+
+Till now we were using only one feature that is the date. We can add additional features to improve the model. Some possible features to engineering are:
+
+1. **Year**: Extract the year from DATE
+2. **Month**: Extract the month from DATE
+3. **Quarter**: Group months into quarters (Q1, Q2, etc.)
+4. **Season**: Assign months to seasons (e.g., summer, winter)
+5. **Day of the Week**: Weekday vs. weekend might affect sales.
+</aside>
+
+### ARIMA:
+
+ARIMA model reduces the RSME score till a very good point (RMSE: 1669.74) but it fails to capture the seasonality in the data as seen in the graph below. So we go ahead with trying SARIMA model, which takes into account the seasonality in the data.
+
+![ARIMA-output.png](Images/ARIMA-output.png)
+
+### SARIMA:
+
+<aside>
+📌
+
+Why use SARIMA instead of ARIMA???
+
+When we take the total sales of a month and plot it, it shows that the data has seasonality. The ARIMA model is not capable of dealing with seasonal data so we use SARIMA.
+
+![Total monthly sales from 2022](Images/image.png)
+
+Total monthly sales from 2022
+
+</aside>
+
+![Sales forecast of year 2025](Images/image%201.png)
+
+Sales forecast of year 2025
